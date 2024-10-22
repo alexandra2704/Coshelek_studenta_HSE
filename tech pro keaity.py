@@ -6,12 +6,11 @@ def command_show(message):
     if history == None:
         bot.send_message(cid, "Простиии! Похоже, что у тебя нет никаких записей о расходах!")
     else:
-        # bot.send_message(cid, "Patience! I have not learned how to do this yet! Come back next time!")
         markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
         markup.row_width = 2
         for mode in SHOW_MODE:
             markup.add(mode)
-        # markup.add('Day', 'Month')
+        
         msg = bot.reply_to(message, 'Расскажи на что ты хочешь потратиться', reply_markup=markup)
         bot.register_next_step_handler(msg, process_show_spending)
 
@@ -19,10 +18,10 @@ def calculate_spendings(queryResult):
     total_dict = {}
 
     for row in queryResult:
-        s = row.split(',')    #date,cat,money
-        cat = s[1]  #cat
+        s = row.split(',')    
+        cat = s[1] 
         if cat in total_dict:
-            total_dict[cat] = round(total_dict[cat] + float(s[2]),2)    #round up to 2 decimal
+            total_dict[cat] = round(total_dict[cat] + float(s[2]),2)   
         else:
             total_dict[cat] = float(s[2])
     total_text = ""
@@ -44,7 +43,7 @@ def process_show_spending(message):
             raise Exception("Простиии! Похоже, что у тебя нет никаких записей о расходах!")
 
         bot.send_message(cid, "Подожди-ка! Очень напряженно думаю...")
-        bot.send_chat_action(cid, 'тыкаю по кнопочкам')  # show the bot "typing" (max. 5 secs)
+        bot.send_chat_action(cid, 'тыкаю по кнопочкам')  
         time.sleep(0.5)
 
         total_text = ""
@@ -52,11 +51,11 @@ def process_show_spending(message):
         if DayWeekMonth == 'День':
             query = datetime.now().today().strftime(dateFormat)
             queryResult = [value for index, value in enumerate(history) if
-                           str(query) in value]  # query all that contains today's date
+                           str(query) in value] 
         elif DayWeekMonth == 'Месяц':
             query = datetime.now().today().strftime(monthFormat)
             queryResult = [value for index, value in enumerate(history) if
-                           str(query) in value]  # query all that contains today's date
+                           str(query) in value]  
         total_text = calculate_spendings(queryResult)
 
         spending_text = ""
