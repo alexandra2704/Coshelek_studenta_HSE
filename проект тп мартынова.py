@@ -18,4 +18,4 @@ def process_category_step(message):
         message = bot.send_message(cid, 'Сколько ты потратил на {}? \n(Введи только число)'.format(str(choice[cid])))
         bot.register_next_step_handler(message, process_amount_step)
     except Exception as e:
-        bot.reply_to(message, 'Упс! ' + str(e))
+        bot.reply_to(message, 'Упсс! ' + str(e))
