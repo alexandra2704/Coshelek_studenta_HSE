@@ -1,0 +1,5 @@
+@bot.message_handler(commands=['feedback'])
+def command_feedback(message):
+    cid = message.chat.id
+    message = bot.send_message(cid, 'Как я могу стать лучшим ботом?')
+    bot.register_next_step_handler(message, process_feed_back)
