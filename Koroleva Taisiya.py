@@ -1,4 +1,4 @@
-
+#comment
 @bot.message_handler(commands=['история'])
 def command_history(message):
     try:
