@@ -3,3 +3,7 @@ def command_feedback(message):
     cid = message.chat.id
     message = bot.send_message(cid, 'Как я могу стать лучшим ботом? Приветствуются любые отзывы!')
     bot.register_next_step_handler(message, process_feed_back)
+
+@bot.message_handler(func=lambda message: True, content_types=['text'])
+def command_default(m):
+    bot.send_message(m.chat.id, "Я не понимаю \"" + m.text + "\"\nМожет быть, попробуйте зайти на страницу справки по адресу /help")
