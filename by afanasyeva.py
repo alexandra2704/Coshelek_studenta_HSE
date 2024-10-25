@@ -3,7 +3,7 @@ def addUserHistory(cid, recordText):
     if not (str(cid) in global_users_dict):
         global_users_dict[str(cid)] = []
 
-    global_users_dict[str(cid)].apend(recordText)
+    global_users_dict[str(cid)].append(recordText)
     return global_users_dict
 
 def process_feed_back(message):
@@ -12,4 +12,4 @@ def process_feed_back(message):
     print("****************ОБРАТНАЯ СВЯЗЬ********************")
     print("chatid:{} feedback: {}".format(str(cid), feedback_text))
     print("*********************************************")
-    bot.send_message(cid, 'СПАСИБО ЗА ОТЗЫВ!')
+    bot.send_message(cid, 'Спасибо за отзыв!')
