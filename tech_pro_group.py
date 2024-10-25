@@ -19,7 +19,7 @@ commands = {
     'show': 'Показывает сумму расходов',
     'history': 'Показывает историю кошелька',
     'clear': 'Стирает все ваши расходы)))))',
-    'feedback': 'Yay or Nay? Что бы вы хотели улучшить в этом боте'
+    'feedback': 'My way or a highway Что бы вы хотели улучшить в этом боте'
 }
 
 dateFormat = '%d-%b-%Y'
@@ -38,9 +38,7 @@ telebot.logger.setLevel(logging.INFO)
 
 
 def listener(messages):
-    '''
-    When new messages arrive TeleBot will call this function.
-    '''
+    #функция, работающая при получении ботом сообщения
     for m in messages:
         if m.content_type == 'text':
             print("{} name:{} chatid:{} \nmessage: {}\n".format(str(datetime.now()), str(m.chat.first_name),
